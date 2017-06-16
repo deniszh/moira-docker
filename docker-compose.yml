@@ -9,8 +9,8 @@ moira-nginx:
   ports:
     - 8080:8080
 
-# Cache is a lightweight Go application responsible for receiving lots of metric data in Graphite format. 
-# Cache filters received data and saves only metrics that match any of user triggers. 
+# Cache is a lightweight Go application responsible for receiving lots of metric data in Graphite format.
+# Cache filters received data and saves only metrics that match any of user triggers.
 # This reduces load on all other parts of Moira.
 moira-cache:
   build: moira-go/
@@ -21,10 +21,9 @@ moira-cache:
     - ./config/yaml:/etc/moira/
   ports:
     - 2003:2003
-    - 2003/udp:2003/udp
 
-# Notifier is a Go application that watches for generated events. 
-# Notifier is responsible for scheduling and sending notifications, 
+# Notifier is a Go application that watches for generated events.
+# Notifier is responsible for scheduling and sending notifications,
 # observing quiet hours, retrying failed notifications, etc.
 
 
@@ -48,9 +47,9 @@ moira-api:
   expose:
     - 8081
 
-# Checker is a Python application with embedded Graphite functions. 
-# Checker watches for incoming metric values and performs checks 
-# according to saved trigger settings. 
+# Checker is a Python application with embedded Graphite functions.
+# Checker watches for incoming metric values and performs checks
+# according to saved trigger settings.
 # When state of any trigger changes, Checker generates an event.
 moira-checker:
   build: moira-pip/
@@ -60,7 +59,7 @@ moira-checker:
   volumes:
     - ./config/yaml:/etc/moira/
 
-# A Redis database ... 
+# A Redis database ...
 redis:
   image: redis
   expose:
