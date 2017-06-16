@@ -1,7 +1,7 @@
-FROM golang:1.6
+FROM golang:alpine
+RUN apk add --no-cache git
 
 # http://moira.readthedocs.org/en/latest/quickstart.html
-
 
 # Install the libraries we need
 ENV GOPATH /moira
